@@ -1,5 +1,9 @@
 /*
- * Macro template to process multiple images in a folder
+ Macro to count and measure SMN cluster in extracted nucleus images. Excludes images smaller than 10x10pix
+ Generated for the Ladybug project, Lahtonen lab, 2025
+ Needed fixes and improvements:
+ - Print spot count = 0 !!!
+ - user input for stain and subsequent naming
  */
 
 #@ File (label = "Input directory", style = "directory") input
@@ -60,7 +64,7 @@ WellList = getFileList(input);
 					run("Label image to ROIs", "rm=[RoiManager[size=1, visible=true]]");
 					Spotcount = roiManager("count");
 					if (Spotcount < 1) {
-						run("Close All");
+						run("Close All");  // NEEDS BETTER SOLUTION - PRINT SPOT NUMBER = 0
 					} else {
 					roiManager("Select", 0);
 					selectImage(title);
